@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Professional Library Management System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5d142;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    background:#111;
+    color:white;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    color:#f5d142;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    transition:0.4s;
+}
+
+.nav-links a:hover{
+    color:#f5d142;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:90vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1500&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    text-align:center;
+    color:white;
+    padding:30px;
+}
+
+.hero h1{
+    font-size:65px;
+    animation:fadeIn 1.5s ease;
+}
+
+.hero p{
+    max-width:750px;
+    margin-top:20px;
+    line-height:30px;
+    font-size:18px;
+}
+
+.hero-buttons{
+    margin-top:35px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.hero-buttons button{
+    padding:15px 28px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.4s;
+}
+
+.explore-btn{
+    background:#f5d142;
+    color:black;
+}
+
+.login-btn{
+    background:#444;
+    color:white;
+}
+
+.hero-buttons button:hover{
+    transform:scale(1.1);
+}
+
+/* ================= LOGIN ================= */
+
+.login-section{
+    padding:60px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    width:400px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+    animation:fadeIn 1s ease;
+}
+
+.login-box h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.login-box input,
+.login-box select{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border:none;
+    background:#eee;
+    border-radius:10px;
+    outline:none;
+}
+
+.login-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#111;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.login-box button:hover{
+    background:#444;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+    display:none;
+    padding:60px 50px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:42px;
+    color:#111;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.dashboard-card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    transition:0.4s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-10px);
+}
+
+.dashboard-card h2{
+    font-size:45px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-section{
+    margin-top:40px;
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.search-section input,
+.search-section select{
+    padding:14px;
+    width:250px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+.search-section button{
+    padding:14px 24px;
+    border:none;
+    border-radius:10px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+/* ================= BOOKS ================= */
+
+.book-section{
+    margin-top:60px;
+}
+
+.book-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.book-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    transition:0.5s;
+    animation:fadeUp 1s ease;
+}
+
+.book-card:hover{
+    transform:translateY(-12px) scale(1.02);
+}
+
+.book-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.book-info{
+    padding:20px;
+}
+
+.book-info h3{
+    margin-bottom:10px;
+}
+
+.book-info p{
+    margin:8px 0;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:20px;
+    background:#d4edda;
+    color:green;
+    margin-top:10px;
+}
+
+.button-group{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.button-group button{
+    flex:1;
+    min-width:90px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.update-btn{
+    background:#6d4c41;
+    color:white;
+}
+
+.delete-btn{
+    background:#757575;
+    color:white;
+}
+
+.read-btn{
+    background:#111;
+    color:white;
+}
+
+.issue-btn{
+    background:#f5d142;
+    color:black;
+}
+
+.button-group button:hover{
+    transform:scale(1.05);
+}
+
+/* ================= SETTINGS ================= */
+
+.settings{
+    margin-top:70px;
+    padding:60px 50px;
+    background:#111;
+    color:white;
+    border-radius:20px;
+}
+
+.settings-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.setting-box{
+    background:#222;
+    padding:25px;
+    border-radius:15px;
+    transition:0.4s;
+}
+
+.setting-box:hover{
+    transform:translateY(-8px);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    margin-top:60px;
+    background:black;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeIn{
+
+from{
+    opacity:0;
+    transform:translateY(20px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+@keyframes fadeUp{
+
+from{
+    opacity:0;
+    transform:translateY(40px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:42px;
+}
+
+.navbar{
+    flex-direction:column;
+    gap:15px;
+}
+
+.nav-links{
+    justify-content:center;
+}
+
+.search-section input,
+.search-section select{
+    width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+<div class="logo">
+LibraryMS
+</div>
+
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#">Books</a>
+<a href="#">Student</a>
+<a href="#">Employee</a>
+<a href="#">Admin</a>
+<a href="#">Settings</a>
+</div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<h1>
+Library Management System
+</h1>
+
+<p>
+Professional digital library system for students,
+employees and admins. Search books, issue books,
+manage records and monitor library activities.
+</p>
+
+<div class="hero-buttons">
+
+<button class="explore-btn"
+onclick="scrollToLogin()">
+Explore Books
+</button>
+
+<button class="login-btn"
+onclick="scrollToLogin()">
+Login Portal
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= LOGIN ================= -->
+
+<section class="login-section">
+
+<div class="login-box">
+
+<h2>Login Portal</h2>
+
+<select id="role">
+
+<option value="Student">Student</option>
+<option value="Employee">Employee</option>
+<option value="Admin">Admin</option>
+
+</select>
+
+<input type="text"
+id="username"
+placeholder="Enter Username">
+
+<input type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="loginSystem()">
+Login
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="dashboard"
+id="dashboard">
+
+<h1 class="section-title">
+Library Dashboard
+</h1>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card">
+<h2 id="bookCount">0</h2>
+<p>Total Books</p>
+</div>
+
+<div class="dashboard-card">
+<h2 id="issuedCount">0</h2>
+<p>Issued Books</p>
+</div>
+
+<div class="dashboard-card">
+<h2>1200+</h2>
+<p>Students</p>
+</div>
+
+<div class="dashboard-card">
+<h2>150+</h2>
+<p>Employees</p>
+</div>
+
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-section">
+
+<input type="text"
+id="searchInput"
+placeholder="Search Books...">
+
+<select id="categoryFilter">
+
+<option value="All">
+All Categories
+</option>
+
+<option value="Programming">
+Programming
+</option>
+
+<option value="Database">
+Database
+</option>
+
+<option value="AI">
+AI
+</option>
+
+<option value="Networking">
+Networking
+</option>
+
+</select>
+
+<button onclick="searchBooks()">
+Search
+</button>
+
+<button onclick="addBook()">
+Add Book
+</button>
+
+</div>
+
+<!-- BOOKS -->
+
+<div class="book-section">
+
+<h1 class="section-title">
+Available Books
+</h1>
+
+<div class="book-container"
+id="bookContainer">
+
+</div>
+
+</div>
+
+<!-- SETTINGS -->
+
+<div class="settings">
+
+<h1 class="section-title"
+style="color:white;">
+System Features
+</h1>
+
+<div class="settings-grid">
+
+<div class="setting-box">
+<h3>Dark Mode</h3>
+<p>Professional night mode system.</p>
+</div>
+
+<div class="setting-box">
+<h3>Book Tracking</h3>
+<p>Track all issued and returned books.</p>
+</div>
+
+<div class="setting-box">
+<h3>Email Notifications</h3>
+<p>Automatic reminders and alerts.</p>
+</div>
+
+<div class="setting-box">
+<h3>Fine Management</h3>
+<p>Auto calculate late return fines.</p>
+</div>
+
+<div class="setting-box">
+<h3>Security System</h3>
+<p>Advanced admin authentication system.</p>
+</div>
+
+<div class="setting-box">
+<h3>Live Analytics</h3>
+<p>Monitor all library statistics instantly.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+© 2026 Professional Library Management System
+</p>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* ================= LOGIN ================= */
+
+function scrollToLogin(){
+
+window.scrollTo({
+top:700,
+behavior:"smooth"
+});
+
+}
+
+function loginSystem(){
+
+const role =
+document.getElementById("role").value;
+
+const username =
+document.getElementById("username").value;
+
+const password =
+document.getElementById("password").value;
+
+if(username === "" || password === ""){
+
+alert("Please Fill All Details");
+return;
+
+}
+
+alert(
+role + " Login Successful : " + username
+);
+
+document.getElementById("dashboard")
+.style.display = "block";
+
+window.scrollTo({
+top:1200,
+behavior:"smooth"
+});
+
+displayBooks(books);
+
+}
+
+/* ================= BOOK DATA ================= */
+
+let issuedBooks = 0;
+
+const books = [
+
+{
+title:"Python Programming",
+author:"John Smith",
+category:"Programming",
+status:"Available",
+image:"https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"
+},
+
+{
+title:"Database Management",
+author:"Ravi Kumar",
+category:"Database",
+status:"Available",
+image:"https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop"
+},
+
+{
+title:"Artificial Intelligence",
+author:"David Miller",
+category:"AI",
+status:"Available",
+image:"https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1200&auto=format&fit=crop"
+},
+
+{
+title:"Computer Networks",
+author:"Aman Verma",
+category:"Networking",
+status:"Available",
+image:"https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1200&auto=format&fit=crop"
+}
+
+];
+
+/* ================= DISPLAY BOOKS ================= */
+
+function displayBooks(bookList){
+
+const container =
+document.getElementById("bookContainer");
+
+container.innerHTML = "";
+
+bookList.forEach((book,index)=>{
+
+container.innerHTML += `
+
+<div class="book-card">
+
+<img src="${book.image}">
+
+<div class="book-info">
+
+<h3>${book.title}</h3>
+
+<p>
+<strong>Author:</strong>
+${book.author}
+</p>
+
+<p>
+<strong>Category:</strong>
+${book.category}
+</p>
+
+<span class="status">
+${book.status}
+</span>
+
+<div class="button-group">
+
+<button class="update-btn"
+onclick="updateBook(${index})">
+Update
+</button>
+
+<button class="delete-btn"
+onclick="deleteBook(${index})">
+Delete
+</button>
+
+<button class="read-btn"
+onclick="readBook('${book.title}')">
+Read
+</button>
+
+<button class="issue-btn"
+onclick="issueBook(${index})">
+Issue
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("bookCount")
+.innerText = books.length;
+
+}
+
+/* ================= SEARCH ================= */
+
+function searchBooks(){
+
+const searchText =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+const category =
+document.getElementById("categoryFilter")
+.value;
+
+const filteredBooks = books.filter(book => {
+
+const matchesSearch =
+book.title.toLowerCase()
+.includes(searchText);
+
+const matchesCategory =
+category === "All"
+|| book.category === category;
+
+return matchesSearch && matchesCategory;
+
+});
+
+displayBooks(filteredBooks);
+
+}
+
+/* ================= ADD BOOK ================= */
+
+function addBook(){
+
+const title =
+prompt("Enter Book Title");
+
+if(!title) return;
+
+const author =
+prompt("Enter Author Name");
+
+const category =
+prompt("Enter Category");
+
+const image =
+prompt("Enter Image URL");
+
+books.push({
+
+title:title,
+author:author,
+category:category,
+status:"Available",
+
+image:image ||
+"https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"
+
+});
+
+displayBooks(books);
+
+alert("Book Added Successfully");
+
+}
+
+/* ================= UPDATE BOOK ================= */
+
+function updateBook(index){
+
+const newTitle =
+prompt(
+"Update Book Title",
+books[index].title
+);
+
+if(newTitle){
+
+books[index].title = newTitle;
+
+displayBooks(books);
+
+alert("Book Updated");
+
+}
+
+}
+
+/* ================= DELETE BOOK ================= */
+
+function deleteBook(index){
+
+const confirmDelete =
+confirm("Delete This Book?");
+
+if(confirmDelete){
+
+books.splice(index,1);
+
+displayBooks(books);
+
+alert("Book Deleted");
+
+}
+
+}
+
+/* ================= READ BOOK ================= */
+
+function readBook(title){
+
+alert("Opening Book : " + title);
+
+}
+
+/* ================= ISSUE BOOK ================= */
+
+function issueBook(index){
+
+if(books[index].status === "Issued"){
+
+alert("Book Already Issued");
+return;
+
+}
+
+books[index].status = "Issued";
+
+issuedBooks++;
+
+document.getElementById("issuedCount")
+.innerText = issuedBooks;
+
+displayBooks(books);
+
+alert("Book Issued Successfully");
+
+}
+
+</script>
+
+</body>
+</html>
